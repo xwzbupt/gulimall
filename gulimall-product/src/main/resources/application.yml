@@ -2,13 +2,23 @@ spring:
   datasource:
     username: root
     password: 123456
-    url: jdbc:mysql://localhost:3306/gulimall_pms
+    url: jdbc:mysql://localhost:3306/gulimall_pms?useSSL=false&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
 mybatis-plus:
   #mapper下的任意路径下的所有xml,classpath后面带一个*代表不止扫描自己的类路径，还扫描引用的其他依赖的jar包的类路径；可以只精确地写自己
   mapper-locations: classpath:/mapper/**/*.xml
   global-config:
     db-config:
       id-type: auto
+      logic-delete-value: 1
+      logic-not-delete-value: 0
 server:
   port: 10000
+logging:
+  level:
+    com.atguigu.gulimall: debug
+
